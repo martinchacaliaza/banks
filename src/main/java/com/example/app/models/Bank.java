@@ -14,6 +14,7 @@ import lombok.Setter;
 @Document(collection ="bancos")
 public class Bank {
 	
+
 	@Id
 	@NotEmpty
 	private String id;

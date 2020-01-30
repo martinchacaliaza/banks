@@ -76,7 +76,8 @@ public class BankControllers {
 	public Mono<ResponseEntity<Void>> deleteBanco(@PathVariable String id) {
 		return bankService.findByIdBanco(id)
 				.flatMap(s -> {
-			return bankService.deleteBanco(s).then(Mono.just(new ResponseEntity<Void>(HttpStatus.NO_CONTENT)));
+			return bankService.deleteBanco(s).
+					then(Mono.just(new ResponseEntity<Void>(HttpStatus.NO_CONTENT)));
 		}).defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NO_CONTENT));
 	}
 
