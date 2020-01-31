@@ -14,37 +14,37 @@ import reactor.core.publisher.Mono;
 public class BankServiceImpl implements BankService {
 	
 	@Autowired
-	public BankDao clienteDao;
+	public BankDao bankDao;
 	
 	@Override
 	public Flux<Bank> findAllBanco()
 	{
-	return clienteDao.findAll();
+	return bankDao.findAll();
 	
 	}
 	@Override
 	public Mono<Bank> findByIdBanco(String id)
 	{
-	return clienteDao.findById(id);
+	return bankDao.findById(id);
 	
 	}
 	
 	@Override
 	public Mono<Bank> viewRucBanco(String ruc)
 	{
-	return clienteDao.viewRucBanco(ruc);
+	return bankDao.viewRucBanco(ruc);
 	
 	}
 	
 	@Override
 	public Mono<Bank> saveBanco(Bank bank)
 	{
-	return clienteDao.save(bank);
+	return bankDao.save(bank);
 	}
 	
 	@Override
 	public Mono<Void> deleteBanco(Bank bank) {
-		return clienteDao.delete(bank);
+		return bankDao.delete(bank);
 	}
 	
 }

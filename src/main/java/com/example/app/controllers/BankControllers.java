@@ -1,7 +1,4 @@
 package com.example.app.controllers;
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.app.models.Bank;
 import com.example.app.service.BankService;
+
+import io.swagger.annotations.ApiOperation;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-
 
 @RequestMapping("/api/Bancos")
 @RestController
@@ -28,9 +25,7 @@ public class BankControllers {
 	@Autowired
 	private BankService bankService;
 
-
-
-	//LISTA TODOS LOS BANCOS
+	@ApiOperation(value = "LISTA TODOS LOS BANCOS", notes="")
 	@GetMapping
 	public Mono<ResponseEntity<Flux<Bank>>> findAll() {
 		return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -39,7 +34,7 @@ public class BankControllers {
 		);
 	}
 
-	//LISTA BANCO POR ID
+	@ApiOperation(value = "LISTA BANCO POR ID", notes="")
 	@GetMapping("/{id}")
 	public Mono<ResponseEntity<Bank>> viewId(@PathVariable String id) {
 		return bankService.findByIdBanco(id)
@@ -47,7 +42,7 @@ public class BankControllers {
 				.defaultIfEmpty(ResponseEntity.notFound().build());
 	}
 	
-	//LISTA BANCO POR RUC
+	@ApiOperation(value = "LISTA BANCO POR RUC", notes="")
 	@GetMapping("/ruc/{ruc}")
 	public Mono<ResponseEntity<Bank>> viewId2(@PathVariable String ruc) {
 		return bankService.viewRucBanco(ruc)
@@ -57,21 +52,23 @@ public class BankControllers {
 				.defaultIfEmpty(ResponseEntity.notFound().build());		
 	}
 
-	//ACTUALIZA BANCO POR ID 
+
+	@ApiOperation(value = "ACTUALIZA BANCO POR ID", notes="")
 	@PutMapping
 	public Mono<Bank> updateClientePersonal(@RequestBody Bank cliente) {
 		System.out.println(cliente.toString());
 		return bankService.saveBanco(cliente);
 	}
 	
-	//GUARDA BANCO
+	@ApiOperation(value = "GUARDA BANCO", notes="")
 	@PostMapping
 	public Mono<Bank> guardarCliente(@RequestBody Bank bank) {
 			return bankService.saveBanco(bank);
 
 	}
-
-	//ELIMINA BANCO POR ID
+	
+	
+	@ApiOperation(value = "ELIMINA BANCO POR ID", notes="")
 	@DeleteMapping("/{id}")
 	public Mono<ResponseEntity<Void>> deleteBanco(@PathVariable String id) {
 		return bankService.findByIdBanco(id)
