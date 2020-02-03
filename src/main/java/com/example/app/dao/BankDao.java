@@ -11,8 +11,8 @@ import reactor.core.publisher.Mono;
 public interface BankDao extends ReactiveMongoRepository<Bank, String> {
 
 	
-	@Query("{ 'ruc' : ?0}")
-	Mono<Bank> viewRucBanco(String dni);
+
+	Mono<Bank> findByRuc(String dni);
 	
-	
+
 }

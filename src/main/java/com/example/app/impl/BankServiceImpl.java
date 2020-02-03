@@ -32,7 +32,7 @@ public class BankServiceImpl implements BankService {
 	@Override
 	public Mono<Bank> viewRucBanco(String ruc)
 	{
-	return bankDao.viewRucBanco(ruc);
+	return bankDao.findByRuc(ruc);
 	
 	}
 	
