@@ -3,8 +3,8 @@ package com.example.app.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.app.dao.BankDao;
 import com.example.app.models.Bank;
+import com.example.app.repository.BankDao;
 import com.example.app.service.BankService;
 
 import reactor.core.publisher.Flux;
